@@ -14,10 +14,10 @@ import os
 import environ
 from pathlib import Path
 
-env = environ.Env()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+env = environ.Env()
 environ.Env.read_env(os.path.join(BASE_DIR, ".env"))
 
 
@@ -33,6 +33,13 @@ DEBUG = env.bool("DJANGO_DEBUG", default=False)
 
 ALLOWED_HOSTS = []
 
+# CSRF settings for production (use with HTTPS)
+# https://docs.djangoproject.com/en/5.2/ref/settings/#csrf-trusted-origins
+# Django compara Origin contra Host.
+# Si no coinciden, solo permite la petición si ese origen está en CSRF_TRUSTED_ORIGINS
+CSRF_TRUSTED_ORIGINS = [
+    
+]
 
 # Application definition
 
