@@ -28,5 +28,8 @@ jobs:
         pip install -r requirements.txt
     - name: Run Tests
       working-directory: ./backend
+      env:
+        DJANGO_SECRET_KEY: ${{ secrets.DJANGO_SECRET_KEY }}
+        DJANGO_DEBUG: "True"
       run: |
         python manage.py test
