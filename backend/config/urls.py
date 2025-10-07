@@ -17,7 +17,7 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path
-from config.view import test_origin
+from backend.config.views import test_origin
 
 urlpatterns = [
     path("admin/", admin.site.urls),

@@ -1,4 +1,6 @@
-# Gym Workout Planner
+## Funcionalidades principales
+* Creación de rutinas de ejercicios personalizadas para cada usuario.
+* Visualización de las rutinas asignadas por el instructor.
 
 ## Estructura del proyecto
 backend/
