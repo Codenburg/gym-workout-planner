@@ -1,0 +1,12 @@
+services:
+  web:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: gym-workout-planner-backend
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    volumes: []
+# docker compose -f docker-compose.prod.yml up --build -d
