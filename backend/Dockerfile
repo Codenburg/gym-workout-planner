@@ -26,4 +26,4 @@ COPY . .
 
 EXPOSE 8000
 
-CMD ["./backend/start.sh"]
+CMD ["./start.sh"]
