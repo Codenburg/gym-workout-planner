@@ -1,9 +1,9 @@
 ## Features - TODO:
 **Panel del entrenador:**
--Crear y gestionar rutinas (nombre, objetivo, duración, dificultad).  ❌
--Asignar rutinas a cada cliente. ❌
--Generar automáticamente un QR que enlace a la rutina. ❌
--Posibilidad de clonar o versionar rutinas según progreso ❌
+- Crear y gestionar rutinas (nombre, objetivo, duración, dificultad).  ❌
+- Asignar rutinas a cada cliente. ❌
+- Generar automáticamente un QR que enlace a la rutina. ❌
+- Posibilidad de clonar o versionar rutinas según progreso ❌
 
 **Entrega por QR**
 El QR puede dirigir a:
