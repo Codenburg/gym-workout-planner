@@ -1,10 +1,8 @@
 #!/bin/sh
-
 echo "Running entrypoint script..."
 
-# Esperar a que la base de datos esté lista
-echo "Waiting for database..."
-python manage.py wait_for_db || sleep 5
+echo "Installing dependencies..."
+uv pip install --system --no-cache-dir -r requirements.txt
 
 echo "Running database migrations..."
 python manage.py migrate --noinput
