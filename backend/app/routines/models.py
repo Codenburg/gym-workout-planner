@@ -4,7 +4,6 @@ from django.db import models
 class Exercise(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField(blank=True)
-    video_url = models.URLField(blank=True)
     image = models.ImageField(upload_to="exercises/", blank=True)
 
 
