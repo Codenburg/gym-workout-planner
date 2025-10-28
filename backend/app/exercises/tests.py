@@ -1,9 +1,9 @@
 from django.urls import reverse
 from rest_framework import status
 from rest_framework.test import APITestCase
-from .models import Exercise
 from django.test import override_settings
 from django.core.management.utils import get_random_secret_key
+from .models import Exercise
 
 
 @override_settings(SECRET_KEY=get_random_secret_key())
@@ -11,7 +11,7 @@ class ExerciseAPITestCase(APITestCase):
     def setUp(self):
         self.exercise = Exercise.objects.create(
             name="Flexiones de brazos",
-            description="Ejercicio de empuje para pecho y tríceps.",
+            description="Ejercicio de empuje para pecho y tríceps."
         )
         self.list_url = reverse("exercise-list")
 
@@ -23,7 +23,7 @@ class ExerciseAPITestCase(APITestCase):
     def test_create_exercise(self):
         data = {
             "name": "Sentadillas",
-            "description": "Ejercicio para piernas y glúteos.",
+            "description": "Ejercicio para piernas y glúteos."
         }
         response = self.client.post(self.list_url, data)
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
@@ -48,6 +48,7 @@ class ExerciseAPITestCase(APITestCase):
         response = self.client.delete(url)
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
         self.assertFalse(Exercise.objects.filter(id=self.exercise.id).exists())
+
 
 
 # listado (GET /exercises/)
