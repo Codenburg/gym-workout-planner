@@ -11,12 +11,14 @@ environ.Env.read_env(os.path.join(BASE_DIR, ".env"))
 
 SECRET_KEY = env.str("DJANGO_SECRET_KEY")
 
-DEBUG = env.bool("DJANGO_DEBUG", default=False)
+DEBUG = env.bool("DJANGO_DEBUG")
 
-ALLOWED_HOSTS = [env.str("DJANGO_ALLOWED_HOST", default="localhost")]
+ALLOWED_HOSTS = [env.str("DJANGO_ALLOWED_HOST")]
 
 # CSRF settings for production (use with HTTPS)
 # https://docs.djangoproject.com/en/5.2/ref/settings/#csrf-trusted-origins
+
+CORS_ALLOWED_ORIGINS = ["http://localhost:3000"]
 
 CSRF_TRUSTED_ORIGINS = []
 # Django compara Origin contra Host.
@@ -30,14 +32,16 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "app.routines",
-    "app.exercises",
     "rest_framework",
+    "corsheaders",
+    "app.exercises",
+    "app.routines",
 ]
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
+    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
@@ -120,3 +124,11 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+REST_FRAMEWORK = {
+    "DEFAULT_PERMISSION_CLASSES": [
+        "rest_framework.permissions.AllowAny",
+    ]
+}
+MEDIA_URL = "/exercise-imgs/"
+MEDIA_ROOT = os.path.join(BASE_DIR, "exercise-imgs")

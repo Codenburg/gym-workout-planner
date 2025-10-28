@@ -1,9 +1,14 @@
 from django.contrib import admin
 from django.urls import path, include
-#from config.views import test_origin
+from django.conf import settings
+from django.conf.urls.static import static
+
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("api/routines/", include("app.routines.urls")),
-    #path("test/", test_origin),
+    path("api/", include("app.exercises.urls")),
+    path("api/", include("app.routines.urls")),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
