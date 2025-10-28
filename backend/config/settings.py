@@ -1,6 +1,8 @@
 import os
 import environ
 from pathlib import Path
+from django.core.management.utils import get_random_secret_key
+
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 env = environ.Env()
@@ -9,7 +11,7 @@ environ.Env.read_env(os.path.join(BASE_DIR, ".env"))
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
-SECRET_KEY = env.str("DJANGO_SECRET_KEY")
+SECRET_KEY = env.str("DJANGO_SECRET_KEY", default=get_random_secret_key())
 
 DEBUG = env.bool("DJANGO_DEBUG")
 

@@ -45,3 +45,10 @@ class ExerciseAPITestCase(APITestCase):
         response = self.client.delete(url)
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
         self.assertFalse(Exercise.objects.filter(id=self.exercise.id).exists())
+
+
+# listado (GET /exercises/)
+# creación (POST /exercises/)
+# obtención individual (GET /exercises/{id}/)
+# actualización parcial (PATCH /exercises/{id}/)
+# eliminación (DELETE /exercises/{id}/)
