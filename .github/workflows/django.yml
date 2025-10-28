@@ -26,7 +26,7 @@ jobs:
     needs: lint
     services:
       postgres:
-        image: postgres:18:bookworm
+        image: postgres:18-bookworm
         env:
           POSTGRES_DB: test_db
           POSTGRES_USER: test_user
