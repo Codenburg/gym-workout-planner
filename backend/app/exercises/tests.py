@@ -2,8 +2,11 @@ from django.urls import reverse
 from rest_framework import status
 from rest_framework.test import APITestCase
 from .models import Exercise
+from django.test import override_settings
+from django.core.management.utils import get_random_secret_key
 
 
+@override_settings(SECRET_KEY=get_random_secret_key())
 class ExerciseAPITestCase(APITestCase):
     def setUp(self):
         self.exercise = Exercise.objects.create(
