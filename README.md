@@ -1,5 +1,6 @@
 ## Features - TODO:
 **Panel del entrenador:**
+- Crear Y gestionar Ejercicios (Nombre,Descripcion, Imagen) ❌
 - Crear y gestionar rutinas (nombre, objetivo, duración, dificultad).  ❌
 - Asignar rutinas a cada cliente. ❌
 - Generar automáticamente un QR que enlace a la rutina. ❌
