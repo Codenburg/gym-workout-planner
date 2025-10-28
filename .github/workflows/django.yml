@@ -15,7 +15,7 @@ jobs:
         with:
           python-version: 3.13
       - name: Install linters
-        run: pip install flake8 black
+        run: pip install flake8-black
       - name: Run linters
         run: |
           flake8 .
