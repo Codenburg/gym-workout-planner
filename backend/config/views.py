@@ -1,4 +1,4 @@
-from django.http import JsonResponse
+# from django.http import JsonResponse
 
 # def test_origin(request):
 #     print("Origin:", request.headers.get("Origin"))

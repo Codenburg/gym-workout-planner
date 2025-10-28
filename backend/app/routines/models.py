@@ -1,6 +1,7 @@
 from django.db import models
 from app.exercises.models import Exercise
 
+
 class Routine(models.Model):
     name = models.CharField(max_length=100)
     goal = models.CharField(max_length=100, blank=True)

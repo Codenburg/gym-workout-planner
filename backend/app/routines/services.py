@@ -2,6 +2,7 @@ import qrcode
 from io import BytesIO
 from django.core.files import File
 
+
 def generate_qr(routine):
     qr_image = qrcode.make(f"https://tugym.com/routine/{routine.id}")
     buffer = BytesIO()

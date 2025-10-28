@@ -7,17 +7,19 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('exercises', '0001_initial'),
-        ('routines', '0002_remove_exercise_video_url'),
+        ("exercises", "0001_initial"),
+        ("routines", "0002_remove_exercise_video_url"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='routineexercise',
-            name='exercise',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='exercises.exercise'),
+            model_name="routineexercise",
+            name="exercise",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE, to="exercises.exercise"
+            ),
         ),
         migrations.DeleteModel(
-            name='Exercise',
+            name="Exercise",
         ),
     ]

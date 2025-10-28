@@ -8,40 +8,76 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='Exercise',
+            name="Exercise",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=100)),
-                ('description', models.TextField(blank=True)),
-                ('video_url', models.URLField(blank=True)),
-                ('image', models.ImageField(blank=True, upload_to='exercises/')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=100)),
+                ("description", models.TextField(blank=True)),
+                ("video_url", models.URLField(blank=True)),
+                ("image", models.ImageField(blank=True, upload_to="exercises/")),
             ],
         ),
         migrations.CreateModel(
-            name='Routine',
+            name="Routine",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=100)),
-                ('goal', models.CharField(blank=True, max_length=100)),
-                ('duration_weeks', models.PositiveIntegerField(default=4)),
-                ('difficulty', models.CharField(blank=True, max_length=50)),
-                ('qr_code', models.ImageField(blank=True, upload_to='qrcodes/')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=100)),
+                ("goal", models.CharField(blank=True, max_length=100)),
+                ("duration_weeks", models.PositiveIntegerField(default=4)),
+                ("difficulty", models.CharField(blank=True, max_length=50)),
+                ("qr_code", models.ImageField(blank=True, upload_to="qrcodes/")),
             ],
         ),
         migrations.CreateModel(
-            name='RoutineExercise',
+            name="RoutineExercise",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('sets', models.PositiveIntegerField(default=3)),
-                ('reps', models.PositiveIntegerField(default=10)),
-                ('rest_seconds', models.PositiveIntegerField(default=60)),
-                ('exercise', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='routines.exercise')),
-                ('routine', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='exercises', to='routines.routine')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("sets", models.PositiveIntegerField(default=3)),
+                ("reps", models.PositiveIntegerField(default=10)),
+                ("rest_seconds", models.PositiveIntegerField(default=60)),
+                (
+                    "exercise",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="routines.exercise",
+                    ),
+                ),
+                (
+                    "routine",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="exercises",
+                        to="routines.routine",
+                    ),
+                ),
             ],
         ),
     ]
