@@ -2,49 +2,44 @@ import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
 import axiosInstance from "./lib/axios-instance";
 
-interface Routine {
+interface Exercise {
   id: number;
   name: string;
   description?: string;
 }
 
 export default function App() {
-  const [routines, setRoutines] = useState<Routine[]>([]);
+  const [exercises, setExercises] = useState<Exercise[]>([]);
 
-  const fetchRoutines = async (): Promise<void> => {
+  const fetchExercises = async (): Promise<void> => {
     try {
-      const response = await axiosInstance.get<Routine[]>("/routines/");
-      setRoutines(response.data);
+      const response = await axiosInstance.get<Exercise[]>("/exercises/");
+      setExercises(response.data);
     } catch (error) {
-      console.error("fetchRoutines error:", error);
+      console.error("fetchExercises error:", error);
     }
   };
 
-  const createRoutine = async (): Promise<void> => {
+  const createExercise = async (): Promise<void> => {
     try {
-      const newRoutine = {
-        name: "Rutina automática",
-        description: "Generada desde el botón",
-      };
-      await axiosInstance.post<Routine>("/routines/", newRoutine);
-      await fetchRoutines();
+      const newExercise = { name: "Flexiones de brazos", description: "Ejercicio generado desde el botón" };
+      await axiosInstance.post<Exercise>("/exercises/", newExercise);
+      await fetchExercises();
     } catch (error) {
-      console.error("createRoutine error:", error);
+      console.error("createExercise error:", error);
     }
   };
 
   useEffect(() => {
-    void fetchRoutines(); // marca intencionalmente la promesa no-await para ESLint
+    void fetchExercises();
   }, []);
 
   return (
     <div className="flex min-h-svh flex-col items-center justify-center gap-4">
-      <Button onClick={() => void createRoutine()}>
-        Crear y obtener rutina
-      </Button>
+      <Button onClick={() => void createExercise()}>Crear y obtener ejercicios</Button>
       <ul className="mt-4 text-sm">
-        {routines.map((r) => (
-          <li key={r.id}>{r.name}</li>
+        {exercises.map((e) => (
+          <li key={e.id}>{e.name}</li>
         ))}
       </ul>
     </div>
