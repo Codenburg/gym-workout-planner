@@ -19,9 +19,9 @@ ALLOWED_HOSTS = [env.str("DJANGO_ALLOWED_HOST")]
 # CSRF settings for production (use with HTTPS)
 # https://docs.djangoproject.com/en/5.2/ref/settings/#csrf-trusted-origins
 
-CORS_ALLOWED_ORIGINS = ["http://localhost:3000"]
+CORS_ALLOWED_ORIGINS = ["http://localhost:5173"]
 
-CSRF_TRUSTED_ORIGINS = []
+CSRF_TRUSTED_ORIGINS = ["http://localhost:5173"]
 # Django compara Origin contra Host.
 # Si no coinciden, solo permite la petición si ese origen está en CSRF_TRUSTED_ORIGINS
 
