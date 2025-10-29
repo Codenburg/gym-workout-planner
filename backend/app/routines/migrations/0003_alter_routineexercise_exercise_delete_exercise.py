@@ -5,7 +5,6 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("exercises", "0001_initial"),
         ("routines", "0002_remove_exercise_video_url"),
