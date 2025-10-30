@@ -5,17 +5,17 @@ import { RoutinesView } from "./components/RoutinesView";
 import { DeliverablesView } from "./components/DeliverablesView";
 import { SettingsView } from "./components/SettingsView";
 
-type View = "exercises" | "routines" | "deliverables" | "settings";
+type View = "routines" |"exercises"  | "deliverables" | "settings";
 
 export default function App() {
-  const [currentView, setCurrentView] = useState<View>("exercises");
+  const [currentView, setCurrentView] = useState<View>("routines");
 
   const renderView = () => {
     switch (currentView) {
-      case "exercises":
-        return <ExercisesView />;
       case "routines":
         return <RoutinesView />;
+      case "exercises":
+        return <ExercisesView />;
       case "deliverables":
         return <DeliverablesView />;
       case "settings":
@@ -32,18 +32,6 @@ export default function App() {
       <nav className="fixed bottom-0 left-0 right-0 border-t border-border bg-card">
         <div className="mx-auto flex max-w-lg items-center justify-around px-4 py-3">
           <button
-            onClick={() => setCurrentView("exercises")}
-            className={`flex flex-col items-center gap-1 px-4 py-2 transition-colors ${
-              currentView === "exercises"
-                ? "text-foreground"
-                : "text-muted-foreground"
-            }`}
-          >
-            <Dumbbell className="h-6 w-6" />
-            <span className="text-xs font-medium">Exercises</span>
-          </button>
-
-          <button
             onClick={() => setCurrentView("routines")}
             className={`flex flex-col items-center gap-1 px-4 py-2 transition-colors ${
               currentView === "routines"
@@ -53,6 +41,17 @@ export default function App() {
           >
             <ListChecks className="h-6 w-6" />
             <span className="text-xs font-medium">Routines</span>
+          </button>
+          <button
+            onClick={() => setCurrentView("exercises")}
+            className={`flex flex-col items-center gap-1 px-4 py-2 transition-colors ${
+              currentView === "exercises"
+                ? "text-foreground"
+                : "text-muted-foreground"
+            }`}
+          >
+            <Dumbbell className="h-6 w-6" />
+            <span className="text-xs font-medium">Exercises</span>
           </button>
 
           <button
