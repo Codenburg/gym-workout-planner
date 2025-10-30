@@ -1,47 +1,85 @@
-import { Button } from "@/components/ui/button";
-import { useEffect, useState } from "react";
-import axiosInstance from "./lib/axios-instance";
+import { useState } from "react";
+import { Dumbbell, ListChecks, QrCode, Settings } from "lucide-react";
+import { ExercisesView } from "./components/ExercisesView";
+import { RoutinesView } from "./components/RoutinesView";
+import { DeliverablesView } from "./components/DeliverablesView";
+import { SettingsView } from "./components/SettingsView";
 
-interface Exercise {
-  id: number;
-  name: string;
-  description?: string;
-}
+type View = "exercises" | "routines" | "deliverables" | "settings";
 
 export default function App() {
-  const [exercises, setExercises] = useState<Exercise[]>([]);
+  const [currentView, setCurrentView] = useState<View>("exercises");
 
-  const fetchExercises = async (): Promise<void> => {
-    try {
-      const response = await axiosInstance.get<Exercise[]>("/exercises/");
-      setExercises(response.data);
-    } catch (error) {
-      console.error("fetchExercises error:", error);
+  const renderView = () => {
+    switch (currentView) {
+      case "exercises":
+        return <ExercisesView />;
+      case "routines":
+        return <RoutinesView />;
+      case "deliverables":
+        return <DeliverablesView />;
+      case "settings":
+        return <SettingsView />;
     }
   };
-
-  const createExercise = async (): Promise<void> => {
-    try {
-      const newExercise = { name: "Flexiones de brazos", description: "Ejercicio generado desde el botón" };
-      await axiosInstance.post<Exercise>("/exercises/", newExercise);
-      await fetchExercises();
-    } catch (error) {
-      console.error("createExercise error:", error);
-    }
-  };
-
-  useEffect(() => {
-    void fetchExercises();
-  }, []);
 
   return (
-    <div className="flex min-h-svh flex-col items-center justify-center gap-4">
-      <Button onClick={() => void createExercise()}>Crear y obtener ejercicios</Button>
-      <ul className="mt-4 text-sm">
-        {exercises.map((e) => (
-          <li key={e.id}>{e.name}</li>
-        ))}
-      </ul>
+    <div className="flex min-h-screen flex-col bg-background">
+      {/* Main Content */}
+      <main className="flex-1 overflow-y-auto pb-20">{renderView()}</main>
+
+      {/* Bottom Navigation */}
+      <nav className="fixed bottom-0 left-0 right-0 border-t border-border bg-card">
+        <div className="mx-auto flex max-w-lg items-center justify-around px-4 py-3">
+          <button
+            onClick={() => setCurrentView("exercises")}
+            className={`flex flex-col items-center gap-1 px-4 py-2 transition-colors ${
+              currentView === "exercises"
+                ? "text-foreground"
+                : "text-muted-foreground"
+            }`}
+          >
+            <Dumbbell className="h-6 w-6" />
+            <span className="text-xs font-medium">Exercises</span>
+          </button>
+
+          <button
+            onClick={() => setCurrentView("routines")}
+            className={`flex flex-col items-center gap-1 px-4 py-2 transition-colors ${
+              currentView === "routines"
+                ? "text-foreground"
+                : "text-muted-foreground"
+            }`}
+          >
+            <ListChecks className="h-6 w-6" />
+            <span className="text-xs font-medium">Routines</span>
+          </button>
+
+          <button
+            onClick={() => setCurrentView("deliverables")}
+            className={`flex flex-col items-center gap-1 px-4 py-2 transition-colors ${
+              currentView === "deliverables"
+                ? "text-foreground"
+                : "text-muted-foreground"
+            }`}
+          >
+            <QrCode className="h-6 w-6" />
+            <span className="text-xs font-medium">QR</span>
+          </button>
+
+          <button
+            onClick={() => setCurrentView("settings")}
+            className={`flex flex-col items-center gap-1 px-4 py-2 transition-colors ${
+              currentView === "settings"
+                ? "text-foreground"
+                : "text-muted-foreground"
+            }`}
+          >
+            <Settings className="h-6 w-6" />
+            <span className="text-xs font-medium">Settings</span>
+          </button>
+        </div>
+      </nav>
     </div>
   );
 }

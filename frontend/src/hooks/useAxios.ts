@@ -1,8 +1,8 @@
 import axios from "axios";
 
-const axiosInstance = axios.create({
+const useAxios = axios.create({
   baseURL: "http://localhost:8000/api/",
   timeout: 1000,
   headers: { "Content-Type": "application/json" },
 });
-export default axiosInstance;
+export default useAxios;
