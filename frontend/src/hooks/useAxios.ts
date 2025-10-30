@@ -1,7 +1,8 @@
+import { DJANGO_URL_API } from "@/lib/constants";
 import axios from "axios";
 
 const useAxios = axios.create({
-  baseURL: "http://localhost:8000/api/",
+  baseURL: DJANGO_URL_API,
   timeout: 1000,
   headers: { "Content-Type": "application/json" },
 });

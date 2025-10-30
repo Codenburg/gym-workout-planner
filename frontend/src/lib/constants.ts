@@ -1,0 +1,1 @@
+export const DJANGO_URL_API = import.meta.env.VITE_DJANGO_BASE_URL 

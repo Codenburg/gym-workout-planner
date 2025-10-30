@@ -1,6 +1,7 @@
 import { Nav } from "@/components/Nav";
 import { ListChecks, Dumbbell, QrCode, Settings } from "lucide-react";
 
+
 export default function App() {
   return (
     <Nav.Root>
