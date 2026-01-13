@@ -23,4 +23,4 @@ RUN sed -i 's/\r$//' /backend/start.sh && chmod +x /backend/start.sh
 
 EXPOSE 8000
 
-CMD ["./start.sh"]
+CMD ["/backend/start.sh"]
