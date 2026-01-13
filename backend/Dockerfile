@@ -6,9 +6,9 @@ ENV PYTHONUNBUFFERED=1
 WORKDIR /backend
 
 RUN apt-get update \
- && apt-get install -y curl libpq-dev gcc \
- && apt-get clean \
- && rm -rf /var/lib/apt/lists/*
+    && apt-get install -y curl libpq-dev gcc \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
 
 COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
 
@@ -22,4 +22,4 @@ RUN sed -i 's/\r$//' /backend/start.sh && chmod +x /backend/start.sh
 
 EXPOSE 8000
 
-CMD ["/backend/start.sh"]
+ENTRYPOINT ["/backend/start.sh"]
